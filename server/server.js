@@ -9,7 +9,7 @@ dotenv.config()
 
 connectDb()
 const app = express()
-const port = process.env.port || 5000 || 4000 || 4900 ||1000;
+const port = process.env.port || 5000 ;
 
 app.use(express.json())
 app.use(cors())
@@ -17,6 +17,20 @@ app.use(cors())
 
 app.get("/", (req,res)=>{
     res.send("working");
+})
+
+app.get('/home',(req,res)=>{
+    res.render('home',{
+        username: "xyz",
+        posts: "flana dhimkana"
+    })
+})
+
+app.get('/allusers',(req,res)=>{
+    res.render('allusers',{
+        data:[{name:"abc", age:20},
+            {name:"def", age:19}]
+    })
 })
 
 app.use(errorHandler)
