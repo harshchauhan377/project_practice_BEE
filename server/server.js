@@ -7,6 +7,9 @@ const cors = require("cors")
 const hbs = require("hbs")
 hbs.registerPartials(__dirname + '/views/partials', function(err){}) // path to your directory
 
+const multer = require("multer")
+const upload = multer({dest: 'uploads/'}) // upload folder
+
 // env file config
 const dotenv = require("dotenv")
 dotenv.config()
@@ -29,6 +32,25 @@ app.use("/api/doctor", require("./routes/doctorRoutes"))
 // })
 
 
+app.post("/profile",upload.single('avatar'),function(req,res,next){
+    console.log(req.body)
+
+    console.log(req.file)
+
+    return res.redirect("/home")
+})
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '/tmp/my-uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+  const uploads = multer({ storage: storage })
 
 
 app.get("/", (req,res)=>{
