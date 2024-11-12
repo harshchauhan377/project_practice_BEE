@@ -40,6 +40,8 @@ app.post("/profile",upload.single('avatar'),function(req,res,next){
     return res.redirect("/home")
 })
 
+
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, '/tmp/my-uploads')
@@ -63,16 +65,16 @@ app.set('view engine', 'hbs')
 
 app.get("/home", (req,res) => {
     res.render("home", {
-        username: "Harshit",
+        username: "Harsh",
         hosts: "Whats up brother"
     })
 })
 
 app.get("/users", (req, res) => {
     const users = [
-        { username: "Harshit", hosts: "What's up brother" },
-        { username: "Alice", hosts: "Hello Alice!" },
-        { username: "Bob", hosts: "Hey Bob!" }
+        { username: "Harsh Chauhan", hosts: "qwertyuiop" },
+        { username: "Dhiman", hosts: "Hello Alice!" },
+        { username: "Singh", hosts: "Hey Bob!" }
     ];
 
     res.render("users", { users });
@@ -84,5 +86,5 @@ app.get("/users", (req, res) => {
 app.use(errorHandler)
 
 app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}`)
+    console.log(`Server is running on http://localhost:${port}`)
 })
