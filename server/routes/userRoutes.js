@@ -8,6 +8,7 @@ const {
 } = require("../controllers/userController")
 
 const {
+    generateToken,
     validateJwtToken
 } = require("../middleware/jwtmiddlewaare")
 
