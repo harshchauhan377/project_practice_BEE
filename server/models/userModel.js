@@ -1,27 +1,42 @@
 const mongoose = require("mongoose")
 
-const doctorDetailsSchema = mongoose.Schema(
+const userSchema = mongoose.Schema(
     {
-        name: {
-            type: String,
-        },
         email: {
             type: String,
+            require: [true, "Please add your email"],
+            
         },
-        speciality: {
+        firstName: {
             type: String,
+            require: [true, "Please add your first name"],
+        },
+        lastName: {
+            type: String,
+            require: [true, "Please add your last name"],
+        },
+        age: {
+            type: Number,
+            require: [true, "Please add your age"],
+        },
+        bloodGroup: {
+            type: String,
+            require: [true, "Please add your blood group"],
+        },
+        gender: {
+            type: String,
+            require: [true, "Please add your gender"],
         },
         phoneNumber: {
             type: Number,
+            require: [true, "Please add your phone number"],
         },
-        experience: {
+        password: {
             type: String,
-        },
-        address: {
-            type: String,
+            require: [true, "Please add your phone number"],
         }
 
     }
 )
 
-module.exports = mongoose.model("Doctors", doctorDetailsSchema)
+module.exports = mongoose.model("User", userSchema)
